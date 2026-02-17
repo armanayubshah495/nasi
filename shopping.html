@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUNG C BI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    overflow:hidden;
+}
+
+/* 🌹 Luxury Glass Card */
+.card{
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(15px);
+    padding:60px 80px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.2);
+    z-index:10;
+}
+
+.card h1{
+    font-size:55px;
+    color:#b3003b;
+    font-weight:700;
+}
+
+.card p{
+    margin-top:20px;
+    font-size:20px;
+    color:#5a0033;
+}
+
+.card button{
+    margin-top:40px;
+    padding:14px 40px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(45deg,#8b0000,#ff0033);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.4s;
+    box-shadow:0 10px 25px rgba(139,0,0,0.4);
+}
+
+.card button:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(139,0,0,0.6);
+}
+
+/* 🌹 Rose Petals */
+.petal{
+    position:fixed;
+    top:-50px;
+    pointer-events:none;
+    animation:fall linear forwards;
+    z-index:1;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>I love you 💖</h1>
+    <button onclick="goHome()">Go Back</button>
+</div>
+
+<script>
+function goHome(){
+    window.location.href = "babypink.html";
+}
+
+/* 🌹 Real Red Rose Petals */
+
+const petalImages = [
+    "https://i.imgur.com/7bKQ3YV.png",
+    "https://i.imgur.com/2X7qZ6F.png",
+    "https://i.imgur.com/JhYw0nM.png"
+];
+
+function createPetal(){
+
+    const petal = document.createElement("img");
+    petal.src = petalImages[Math.floor(Math.random()*petalImages.length)];
+    petal.classList.add("petal");
+
+    petal.style.left = Math.random()*100 + "vw";
+    petal.style.width = (Math.random()*30 + 20) + "px";
+    petal.style.animationDuration = (Math.random()*5 + 6) + "s";
+
+    document.body.appendChild(petal);
+
+    setTimeout(()=>{
+        petal.remove();
+    },11000);
+}
+
+setInterval(createPetal,600);
+</script>
+
+</body>
+</html>

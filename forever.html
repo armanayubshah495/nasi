@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function(){
+   emailjs.init("CEYxRWxhkPUOGyJlw");
+})();
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Special Date 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:#ffe6f0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.calendar{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.1);
+    width:380px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.header button{
+    background:#007bff;
+    border:none;
+    color:white;
+    padding:6px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.header h2{
+    font-size:18px;
+    color:#ff4d88;
+}
+
+.days, .dates{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    text-align:center;
+}
+
+.days div{
+    font-weight:600;
+    margin-bottom:10px;
+    color:#777;
+}
+
+.dates div{
+    padding:10px;
+    margin:4px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.dates div:hover{
+    background:#ffb6c1;
+    color:white;
+}
+
+.selected{
+    background:#ff4d88;
+    color:white;
+}
+
+.special{
+    background:#007bff;
+    color:white;
+}
+
+.footer{
+    margin-top:20px;
+    text-align:center;
+    font-weight:600;
+    color:#ff4d88;
+}
+</style>
+</head>
+<body>
+
+<div class="calendar">
+
+    <div class="header">
+        <button onclick="prevMonth()">‹</button>
+        <h2 id="monthTitle"></h2>
+        <button onclick="nextMonth()">›</button>
+    </div>
+
+    <div class="days">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+    </div>
+
+    <div class="dates" id="dates"></div>
+
+    <div class="footer" id="selectedDate">
+        Select our special date 💖
+    </div>
+
+</div>
+
+<script>
+
+const months = [
+    { name: "February 2026", month: 1, year: 2026 },
+    { name: "March 2026", month: 2, year: 2026 }
+];
+
+let currentIndex = 0;
+let selectedElement = null;
+
+function renderCalendar() {
+
+    const { month, year, name } = months[currentIndex];
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    document.getElementById("monthTitle").innerText = name;
+
+    const datesContainer = document.getElementById("dates");
+    datesContainer.innerHTML = "";
+
+    // Empty boxes
+    for(let i = 0; i < firstDay; i++){
+        datesContainer.innerHTML += "<div></div>";
+    }
+
+    for(let i = 1; i <= lastDate; i++){
+
+        const dateDiv = document.createElement("div");
+        dateDiv.innerText = i;
+
+        if(month === 1 && i === 14){
+            dateDiv.classList.add("special");
+        }
+
+        dateDiv.onclick = function(){
+
+            if(selectedElement){
+                selectedElement.classList.remove("selected");
+            }
+
+            this.classList.add("selected");
+            selectedElement = this;
+
+            const selectedText = i + " " + name;
+
+            document.getElementById("selectedDate").innerText =
+                "You selected: " + selectedText + " 💖";
+
+            try {
+                emailjs.send("service_x4k1n9k","template_ijejo4p",{
+                    date: selectedText
+                });
+            } catch(err){
+                console.log("Email failed:", err);
+            }
+
+        };
+
+        datesContainer.appendChild(dateDiv);
+    }
+}
+
+function nextMonth(){
+    if(currentIndex < months.length - 1){
+        currentIndex++;
+        renderCalendar();
+    }
+}
+
+function prevMonth(){
+    if(currentIndex > 0){
+        currentIndex--;
+        renderCalendar();
+    }
+}
+
+renderCalendar();
+
+</script>
+
+</body>
+</html>

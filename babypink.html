@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DATE KAYA DA UNADOINO EBANI 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:#ffe6f0;
+    color:#333;
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 8%;
+}
+
+.logo{
+    color:#ff4d88;
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:2px;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+.nav-links li a{
+    text-decoration:none;
+    padding:8px 20px;
+    border-radius:25px;
+    font-weight:600;
+    transition:0.3s ease;
+    color:#333;
+}
+
+.nav-links li a:hover{
+    background:#ff4d88;
+    color:white;
+}
+
+.nav-links li a.active{
+    background:#007bff;
+    color:white;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:80vh;
+    text-align:center;
+}
+
+.content h1{
+    font-size:60px;
+    line-height:1.2;
+}
+
+.content span{
+    color:#ff4d88;
+}
+
+.content p{
+    margin:20px 0;
+    color:#555;
+}
+
+/* ===== BUTTON ===== */
+
+.btn{
+    background:#007bff;
+    color:white;
+    padding:14px 35px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 20px rgba(0,123,255,0.4);
+}
+
+@media(max-width:900px){
+    .content h1{
+        font-size:40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2 class="logo">N A S I M A 💖</h2>
+    <ul class="nav-links">
+        <li><a href="babypink.html" class="active">Home</a></li>
+        <li><a href="memories.html">Memories</a></li>
+        <li><a href="shopping.html">your gift</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <div class="content">
+        <h1>HYRKO <br>DATE KAYA DA <span>UNASE HYRIMO.</span></h1>
+        <p>makha da pibiriba cda chngbiyo.</p>
+        <button class="btn" onclick="goForever()">cda chngbiyu</button>
+    </div>
+</section>
+
+<script>
+function goForever(){
+    window.location.href = "forever.html";
+}
+</script>
+
+</body>
+</html>
